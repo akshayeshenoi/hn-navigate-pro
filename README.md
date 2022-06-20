@@ -2,9 +2,11 @@
 
 No frills Hackernews extension that enables [RES](https://redditenhancementsuite.com/) like keyboard navigation.
 
-- Navigate with `j`, `k` keys
+- Navigate news page with `j`, `k` keys
 - `Enter` to open selected link
 - `c` to open comments
+- Navigate comments with `j`, `k` keys
+- `x` to collapse/un-collapse comment tree
 
 
 ## Installation
@@ -21,6 +23,5 @@ No frills Hackernews extension that enables [RES](https://redditenhancementsuite
 3. Navigate to [Hackernews](https://news.ycombinator.com/)!
 
 ### Todo
-- Navigate comments
 - Quick shortcuts to New, Ask, Show, Jobs, etc.
 - Upvote selected link/comment

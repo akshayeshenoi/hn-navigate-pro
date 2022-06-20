@@ -5,8 +5,19 @@
   "manifest_version": 3,
   "content_scripts": [
     {
-      "matches": ["https://news.ycombinator.com/*"],
+      "matches": [
+        "https://news.ycombinator.com/",
+        "https://news.ycombinator.com/news*",
+        "https://news.ycombinator.com/front*",
+        "https://news.ycombinator.com/ask*",
+        "https://news.ycombinator.com/show*",
+        "https://news.ycombinator.com/jobs*"
+      ],
       "js": ["content-script.js"]
+    },
+    {
+      "matches": ["https://news.ycombinator.com/item*"],
+      "js": ["comments-script.js"]
     }
   ]
 }
