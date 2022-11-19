@@ -1,4 +1,4 @@
-const athings = document.querySelectorAll("table.itemlist tr.athing")
+const athings = document.querySelectorAll("tr.athing")
 let athingSelectedIndex = -1;
 
 document.addEventListener('keypress', detectKey);
