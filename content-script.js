@@ -2,6 +2,53 @@ const athings = document.querySelectorAll("tr.athing")
 let athingSelectedIndex = -1;
 
 document.addEventListener('keypress', detectKey);
+document.addEventListener('click', function(event) {
+    // user may have choses to click on a link
+    // OR may have chosen press enter AFTER previously clicking on a link
+    // (probably because of default browser behaviour for enter on hyperlink)
+    // if it's enter, we should prevent default and delegate to keypress handler
+    if (event.pointerType === '') {
+        event.preventDefault();
+        // delegate event
+        const fakeKey = { code: 'Enter' };
+        detectKey(fakeKey);
+        return;
+    }
+
+    // user clicked on link
+    // update our state and open in new tab
+    if (event.target.tagName === 'A' &&
+        event.target.parentElement && 
+        event.target.parentElement.classList.length === 1 &&
+        event.target.parentElement.classList[0] === 'titleline'
+       ) {
+
+        event.preventDefault();
+
+        // get id of the athing
+        const thisAthingID = event.target.parentElement.parentElement.parentElement.id;
+
+        // loop through athings to match ID
+        let i = 0;
+        for (let athing of athings) {
+            if (athing.id === thisAthingID) {
+                // this is our link
+
+                if (athingSelectedIndex !== -1)
+                    // remove older selected athing
+                    removebox(athings[athingSelectedIndex]);
+
+                athingSelectedIndex = i;
+                addbox(athings[athingSelectedIndex]);
+
+                const link = athings[athingSelectedIndex].querySelector("td:nth-child(3) a");
+                window.open(link.href, "_blank");
+                return;
+            }
+            i++;
+        }        
+    }
+});
 
 function detectKey(key) {
     if (!['KeyJ', 'KeyK', 'Enter', 'KeyC'].includes(key.code)) return;
